@@ -5,6 +5,8 @@ from typing import NoReturn
 from src.calculator import Calculator
 from src.custom_ex import IncorrectInputError
 
+#-------------------------------------------------------------ADDITION--------------------------------------------------------------
+
 class CalculatorAddTestCase(unittest.TestCase):
 
     def test_add_3_correct_input(self) -> None | NoReturn:  # unit
@@ -45,7 +47,7 @@ class CalculatorAddTestCase(unittest.TestCase):
         with self.assertRaises(TypeError):
             calculator.add(x,y)
 
-#---------------------------------------------------------------------------------
+#------------------------------------------------------------MULTIPLICATION--------------------------------------------------
 
 class CalculatorMultTestCase(unittest.TestCase):
 
@@ -79,10 +81,10 @@ class CalculatorMultTestCase(unittest.TestCase):
         with self.assertRaises(IncorrectInputError):
             self.calculator.multiply(x,y,z)       
 
-    def tearDown(self):
+    def tearDown(self):   # Cleanup resources or reset state after the test case
         pass
 
-#-------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------DIVISION---------------------------------------------------------------------
 
 class CalculatorDivTestCase(unittest.TestCase):
 
@@ -113,7 +115,10 @@ class CalculatorDivTestCase(unittest.TestCase):
         with self.assertRaises(ZeroDivisionError):
             self.calculator.division(x,y) 
 
-#------------------------------------------------------------------------------------------------------------
+    def tearDown(self):   # Cleanup resources or reset state after the test case
+        pass        
+
+#-----------------------------------------------------------------------SUBSTRACTION---------------------------------------------------------
 
 class CalculatorSubTestCase(unittest.TestCase):
 
@@ -144,4 +149,101 @@ class CalculatorSubTestCase(unittest.TestCase):
         with self.assertRaises(IncorrectInputError):
             self.calculator.substraction(x,y) 
 
-  
+    def tearDown(self):   # Cleanup resources or reset state after the test case
+        pass        
+
+#-------------------------------------------------------------------------MODULO-----------------------------------------------------------------  
+
+class CalculatorModuloTestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_modulo_with_correct_input(self):
+
+        # Arrange
+        x = 15
+        y = 4
+        expected_result = 3
+
+        # Act
+        result = self.calculator.modulo(x, y)
+
+        # Assert
+        self.assertEqual(result, expected_result)  
+
+    def test_modulo_with_incorrect_input(self):
+
+        # Arrange
+        x = 15
+        y = 0
+
+        # Act/Assert
+        with self.assertRaises(ZeroDivisionError):
+            self.calculator.modulo(x,y) 
+
+    def tearDown(self):   # Cleanup resources or reset state after the test case
+        pass        
+
+#-------------------------------------------------------------------------SQUARE ROOT-----------------------------------------------
+
+class CalculatorSquareRootTestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_square_root_with_correct_input(self):
+
+        # Arrange
+        x = 25
+        expected_result = 5
+
+        # Act
+        result = self.calculator.square_root(x)
+
+        # Assert
+        self.assertEqual(result, expected_result)  
+
+    def test_square_root_of_negative_input(self):
+
+        # Arrange
+        x = -15
+        
+        # Act/Assert
+        with self.assertRaises(ValueError):
+            self.calculator.square_root(x)   
+
+    def tearDown(self):   # Cleanup resources or reset state after the test case
+        pass                 
+
+
+#-------------------------------------------------------------------------------SQUARE----------------------------------------------------------------------
+
+class CalculatorSquareTestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_square_with_correct_input(self):
+
+        # Arrange
+        x = 5
+        expected_result = 25
+
+        # Act
+        result = self.calculator.square(x)
+
+        # Assert
+        self.assertEqual(result, expected_result)
+
+    def test_square_of_incorrect_input(self):
+
+        # Arrange
+        x = ''
+        
+        # Act/Assert
+        with self.assertRaises(IncorrectInputError):
+            self.calculator.square(x)  
+
+    def tearDown(self):   # Cleanup resources or reset state after the test case
+        pass                 

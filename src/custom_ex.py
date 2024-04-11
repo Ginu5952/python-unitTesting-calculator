@@ -1,3 +1,4 @@
 
 class IncorrectInputError(TypeError):
     pass
+
